@@ -1,0 +1,875 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aneuk Laot - UMKM Nelayan Produk Segar & Olahan Laut</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #f9f9f5;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #1e88e5 0%, #4dd0e1 50%, #f5f5dc 100%);
+        }
+        .wave-bg {
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEyODAgMTQwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cGF0aCBmaWxsPSIjZjlmOTVmIiBkPSJNMTI4MCAxNDB2LTIxLjNjLTQwLjggMjcuMy04My4xLTcuNy0xMjQuMy0xNC40LTQxLjItNi43LTgxLjUtMTUuNy0xMjMuOC0xMy4zLTQyLjMgMi40LTg2LjggMTkuMS0xMjguNSAyNi43Qzc0MS41IDEyNS42IDY5OSAxMjcgNjU3LjIgMTIwYy00MS44LTctODMuMy0yNS4zLTEyNS4yLTM0LjVDNDkwLjIgNzYuNyA0NDcuNSA3NCA0MDQuNSA4MGMtNDMgNi04Ni40IDIxLjgtMTI5LjUgMzAuN0MxMzEuOSAxMTkuNyA4NiAxMjcgNDAgMTE1LjVjLTQ2LTEyLTkxLjEtNDAuMy0zOS45LTQwLjNWMTQwaDEyODB6Ii8+PC9zdmc+');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: bottom;
+        }
+        .fisherman-icon {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%231e88e5"><path d="M20 12c0-2.54-1.19-4.81-3.04-6.27l-.68-4.06C16.12.71 15.28 0 14.31 0H9.7c-.98 0-1.82.71-1.98 1.67l-.68 4.06C5.19 7.19 4 9.46 4 12s1.19 4.81 3.04 6.27l.68 4.06c.16.96 1 1.67 1.98 1.67h4.61c.98 0 1.81-.71 1.97-1.67l.68-4.06C18.81 16.81 20 14.54 20 12zM6 12c0-3.31 2.69-6 6-6s6 2.69 6 6-2.69 6-6 6-6-2.69-6-6z"/></svg>');
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(30, 136, 229, 0.2);
+        }
+        .chatbot-container {
+            transition: all 0.3s ease;
+        }
+        .chatbot-hidden {
+            transform: translateY(100%);
+            opacity: 0;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center mr-3">
+                    <i class="fas fa-fish text-white text-xl"></i>
+                </div>
+                <a href="#" class="text-2xl font-bold text-blue-600">Aneuk<span class="text-blue-400">Laot</span></a>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="text-blue-600 font-medium hover:text-blue-400 transition">Beranda</a>
+                <a href="#about" class="text-gray-600 hover:text-blue-500 transition">Tentang Kami</a>
+                <a href="#products" class="text-gray-600 hover:text-blue-500 transition">Produk</a>
+                <a href="#blog" class="text-gray-600 hover:text-blue-500 transition">Cerita Nelayan</a>
+                <a href="#contact" class="text-gray-600 hover:text-blue-500 transition">Kontak</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="#order" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full font-medium transition shadow-md">Pesan Sekarang</a>
+                <button class="md:hidden text-gray-600" id="mobile-menu-button">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-white w-full py-2 px-4 shadow-md" id="mobile-menu">
+            <a href="#home" class="block py-2 text-blue-600 font-medium">Beranda</a>
+            <a href="#about" class="block py-2 text-gray-600 hover:text-blue-500">Tentang Kami</a>
+            <a href="#products" class="block py-2 text-gray-600 hover:text-blue-500">Produk</a>
+            <a href="#blog" class="block py-2 text-gray-600 hover:text-blue-500">Cerita Nelayan</a>
+            <a href="#contact" class="block py-2 text-gray-600 hover:text-blue-500">Kontak</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="text-white pb-32 pt-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-blue-600 to-transparent opacity-80"></div>
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center relative z-10">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Ikan Segar Langsung dari Nelayan</h1>
+                <p class="text-xl mb-8">Dukung ekonomi lokal dengan membeli produk hasil tangkapan nelayan tradisional kami. Segar, alami, dan ramah lingkungan.</p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#products" class="bg-white text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-full font-bold text-center shadow-lg transition">Belanja Sekarang</a>
+                    <a href="#about" class="border-2 border-white hover:bg-white hover:text-blue-600 px-6 py-3 rounded-full font-bold text-center transition">Kenali Nelayan Kami</a>
+                </div>
+                <div class="mt-8 flex items-center">
+                    <div class="flex -space-x-2">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" class="w-10 h-10 rounded-full border-2 border-white" alt="Customer">
+                        <img src="https://randomuser.me/api/portraits/men/75.jpg" class="w-10 h-10 rounded-full border-2 border-white" alt="Customer">
+                        <img src="https://randomuser.me/api/portraits/women/63.jpg" class="w-10 h-10 rounded-full border-2 border-white" alt="Customer">
+                    </div>
+                    <div class="ml-4">
+                        <p class="font-bold">500+ Pelanggan Puas</p>
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1581093450021-4a7360e9a9f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Nelayan tradisional" 
+                         class="rounded-xl shadow-2xl w-full max-w-md border-8 border-white">
+                    <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-lg">
+                        <div class="flex items-center">
+                            <div class="bg-blue-100 p-2 rounded-full mr-2">
+                                <i class="fas fa-tag text-blue-500"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500">Diskon Hari Ini</p>
+                                <p class="font-bold text-blue-600">Hingga 20%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Badges -->
+    <section class="bg-white py-8 -mt-16">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+                <div class="flex items-center">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNDAgODAiPjxwYXRoIGZpbGw9IiNGRjBCMjEiIGQ9Ik0yMzkuMyA0MGMwIDIyLTE3LjkgMzkuOS0zOS45IDM5LjloLTE1OS41QzE3LjkgNzkuOSAwIDYyIDAgNDBzMTcuOS0zOS45IDM5LjktMzkuOWgxNTkuNWMyMiAwIDM5LjkgMTcuOSAzOS45IDM5Ljl6Ii8+PHRleHQgeD0iNTAlIiB5PSI1NSUiIGZpbGw9IiNGRkYiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtc2l6ZT0iMTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlByb2R1ayBMb2thbCBJbmRvbmVzaWE8L3RleHQ+PC9zdmc+" 
+                         alt="Produk Lokal Indonesia" class="h-12">
+                </div>
+                <div class="flex items-center">
+                    <i class="fas fa-leaf text-green-500 text-3xl mr-2"></i>
+                    <span class="font-bold">Tangkap Berkelanjutan</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fas fa-shipping-fast text-blue-500 text-3xl mr-2"></i>
+                    <span class="font-bold">Pengiriman Cepat</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fas fa-hand-holding-heart text-pink-500 text-3xl mr-2"></i>
+                    <span class="font-bold">Dukung UMKM</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-blue-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-blue-600 mb-4">Tentang Kami</h2>
+                <div class="w-20 h-1 bg-blue-400 mx-auto"></div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Komunitas Nelayan" 
+                         class="rounded-lg shadow-lg w-full">
+                </div>
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-bold text-blue-600 mb-4">Komunitas Nelayan Pesisir</h3>
+                    <p class="mb-4">AneukLaot adalah wadah bagi nelayan tradisional Aceh untuk memasarkan hasil tangkapan mereka secara langsung kepada konsumen, tanpa melalui tengkulak yang seringkali tidak adil.</p>
+                    <p class="mb-6">Sejak 2015, kami telah memberdayakan lebih dari 150 keluarga nelayan di pesisir Leupung, Aceh Besar untuk mendapatkan penghasilan yang layak dengan cara yang berkelanjutan.</p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <div class="text-blue-500 text-2xl mb-2">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h4 class="font-bold">150+ Nelayan</h4>
+                            <p class="text-sm text-gray-600">Anggota komunitas</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <div class="text-blue-500 text-2xl mb-2">
+                                <i class="fas fa-fish"></i>
+                            </div>
+                            <h4 class="font-bold">20+ Produk</h4>
+                            <p class="text-sm text-gray-600">Segar & olahan</p>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="inline-flex items-center text-blue-600 font-medium">
+                        Baca lebih lanjut tentang misi kami
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-blue-600 mb-4">Produk Kami</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Hasil tangkapan segar setiap hari dan produk olahan berkualitas dengan resep turun temurun.</p>
+                <div class="w-20 h-1 bg-blue-400 mx-auto mt-4"></div>
+            </div>
+            
+            <!-- Product Filters -->
+            <div class="flex flex-wrap justify-center mb-8 gap-2">
+                <button class="px-4 py-2 bg-blue-500 text-white rounded-full font-medium">Semua</button>
+                <button class="px-4 py-2 bg-gray-100 hover:bg-blue-100 rounded-full">Ikan Segar</button>
+                <button class="px-4 py-2 bg-gray-100 hover:bg-blue-100 rounded-full">Ikan Asin</button>
+                <button class="px-4 py-2 bg-gray-100 hover:bg-blue-100 rounded-full">Abon Ikan</button>
+                <button class="px-4 py-2 bg-gray-100 hover:bg-blue-100 rounded-full">Kerupuk Ikan</button>
+                <button class="px-4 py-2 bg-gray-100 hover:bg-blue-100 rounded-full">Produk Lainnya</button>
+            </div>
+            
+            <!-- Product Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- Product 1 -->
+                <div class="product-card bg-white rounded-xl overflow-hidden shadow-md transition duration-300">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Ikan Segar" 
+                             class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2 bg-blue-500 text-white text-xs px-2 py-1 rounded-full">
+                            <i class="fas fa-bolt mr-1"></i> Baru Ditangkap
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-1">Ikan Tenggiri Segar</h3>
+                        <p class="text-gray-600 text-sm mb-3">Ditangkap pagi ini, siap dimasak</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-blue-600">Rp 45.000/kg</span>
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-full text-sm transition">
+                                <i class="fas fa-cart-plus mr-1"></i> Pesan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card bg-white rounded-xl overflow-hidden shadow-md transition duration-300">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Ikan Asin" 
+                             class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2 bg-yellow-500 text-white text-xs px-2 py-1 rounded-full">
+                            <i class="fas fa-star mr-1"></i> Terlaris
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-1">Ikan Asin Peda</h3>
+                        <p class="text-gray-600 text-sm mb-3">Diasinkan tradisional, tanpa pengawet</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-blue-600">Rp 35.000/250gr</span>
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-full text-sm transition">
+                                <i class="fas fa-cart-plus mr-1"></i> Pesan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card bg-white rounded-xl overflow-hidden shadow-md transition duration-300">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Abon Ikan" 
+                             class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-1">Abon Ikan Tongkol</h3>
+                        <p class="text-gray-600 text-sm mb-3">Dibuat manual, tanpa MSG</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-blue-600">Rp 28.000/100gr</span>
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-full text-sm transition">
+                                <i class="fas fa-cart-plus mr-1"></i> Pesan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card bg-white rounded-xl overflow-hidden shadow-md transition duration-300">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Kerupuk Ikan" 
+                             class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full">
+                            <i class="fas fa-leaf mr-1"></i> Organik
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-1">Kerupuk Ikan Tenggiri</h3>
+                        <p class="text-gray-600 text-sm mb-3">Renyah, gurih alami</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-blue-600">Rp 22.000/100gr</span>
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-full text-sm transition">
+                                <i class="fas fa-cart-plus mr-1"></i> Pesan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-block border-2 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white px-6 py-3 rounded-full font-bold transition">
+                    Lihat Semua Produk
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Order Section -->
+    <section id="order" class="py-16 bg-blue-600 text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto bg-white text-gray-800 rounded-xl shadow-xl overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2 bg-blue-500 p-8 flex flex-col justify-center">
+                        <h2 class="text-2xl font-bold mb-4 text-white">Pesan Cepat</h2>
+                        <p class="mb-6 text-blue-100">Isi formulir ini dan kami akan menghubungi Anda untuk konfirmasi pesanan dalam waktu 1 jam.</p>
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-400 p-2 rounded-full mr-3">
+                                <i class="fas fa-shipping-fast text-white"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-white">Gratis Ongkir</p>
+                                <p class="text-sm text-blue-100">Min. pembelian Rp 150.000</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-blue-400 p-2 rounded-full mr-3">
+                                <i class="fas fa-clock text-white"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-white">Siap Kirim Hari Ini</p>
+                                <p class="text-sm text-blue-100">Pesan sebelum jam 12.00 WIB</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 p-8">
+                        <form>
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2" for="name">Nama Lengkap</label>
+                                <input type="text" id="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2" for="phone">Nomor WhatsApp</label>
+                                <input type="tel" id="phone" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2" for="product">Produk yang Dipesan</label>
+                                <select id="product" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <option>Pilih produk...</option>
+                                    <option>Ikan Tenggiri Segar</option>
+                                    <option>Ikan Asin Peda</option>
+                                    <option>Abon Ikan Tongkol</option>
+                                    <option>Kerupuk Ikan Tenggiri</option>
+                                    <option>Produk Lainnya (tulis di catatan)</option>
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2" for="note">Catatan</label>
+                                <textarea id="note" rows="3" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-bold transition">
+                                Kirim Pesanan
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center">
+                <p class="mb-4">Atau hubungi kami langsung via:</p>
+                <div class="flex justify-center space-x-4">
+                    <a href="#" class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full font-bold inline-flex items-center transition">
+                        <i class="fab fa-whatsapp mr-2 text-xl"></i> WhatsApp
+                    </a>
+                    <a href="#" class="bg-blue-400 hover:bg-blue-500 text-white px-6 py-3 rounded-full font-bold inline-flex items-center transition">
+                        <i class="fas fa-robot mr-2 text-xl"></i> AI Assistant
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-blue-600 mb-4">Apa Kata Pelanggan</h2>
+                <div class="w-20 h-1 bg-blue-400 mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Customer" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Dian Sastrowardoyo</h4>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"Ikan tenggirinya selalu segar dan harganya lebih murah dibanding pasar modern. Pengiriman cepat dan packing rapi. Sudah langganan 2 tahun!"</p>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Customer" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Budi Santoso</h4>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"Abon ikan tongkolnya enak banget, anak-anak suka. Sekarang selalu stok di rumah. Senang bisa langsung beli dari nelayannya."</p>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Customer" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Ratna Sarumpaet</h4>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"Sebagai pemilik restoran, kualitas ikan segar dari LautanKita sangat konsisten. Sekarang jadi supplier tetap kami. Dukungan untuk nelayan lokal!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-blue-600 mb-4">Cerita dari Laut</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Kisah nelayan, resep masakan laut, dan tips memilih produk laut berkualitas.</p>
+                <div class="w-20 h-1 bg-blue-400 mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Article 1 -->
+                <article class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition">
+                    <img src="https://images.unsplash.com/photo-1560275619-4662e36fa65c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Kehidupan Nelayan" 
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-2">
+                            <span>15 Juni 2023</span>
+                            <span class="mx-2">•</span>
+                            <span>5 min read</span>
+                        </div>
+                        <h3 class="font-bold text-xl mb-2">Sehari Bersama Nelayan Tradisional</h3>
+                        <p class="text-gray-600 mb-4">Ikuti perjalanan kami menyusuri kehidupan sehari-hari nelayan pesisir yang masih mempertahankan cara tradisional menangkap ikan.</p>
+                        <a href="#" class="text-blue-500 font-medium inline-flex items-center">
+                            Baca selengkapnya
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </article>
+                
+                <!-- Article 2 -->
+                <article class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition">
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" 
+                         alt="Resep Masakan" 
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-2">
+                            <span>2 Juni 2023</span>
+                            <span class="mx-2">•</span>
+                            <span>7 min read</span>
+                        </div>
+                        <h3 class="font-bold text-xl mb-2">5 Resep Olahan Ikan Tenggiri yang Mudah</h3>
+                        <p class="text-gray-600 mb-4">Kreasi masakan rumahan sederhana dengan ikan tenggiri segar yang bisa Anda coba di rumah untuk keluarga tercinta.</p>
+                        <a href="#" class="text-blue-500 font-medium inline-flex items-center">
+                            Baca selengkapnya
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </article>
+                
+                <!-- Article 3 -->
+                <article class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition">
+                    <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Keberlanjutan" 
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-2">
+                            <span>20 Mei 2023</span>
+                            <span class="mx-2">•</span>
+                            <span>4 min read</span>
+                        </div>
+                        <h3 class="font-bold text-xl mb-2">Memahami Tangkap Berkelanjutan</h3>
+                        <p class="text-gray-600 mb-4">Bagaimana nelayan tradisional menjaga kelestarian laut dengan teknik penangkapan ikan yang ramah lingkungan.</p>
+                        <a href="#" class="text-blue-500 font-medium inline-flex items-center">
+                            Baca selengkapnya
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-block border-2 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white px-6 py-3 rounded-full font-bold transition">
+                    Lihat Semua Artikel
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Methods -->
+    <section class="py-12 bg-blue-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-8">
+                <h3 class="text-xl font-bold text-blue-600 mb-2">Metode Pembayaran</h3>
+                <p class="text-gray-600 max-w-2xl mx-auto">Kami menerima berbagai metode pembayaran untuk kemudahan bertransaksi</p>
+            </div>
+            
+            <div class="flex flex-wrap justify-center items-center gap-6 md:gap-12">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNDAgODAiPjxwYXRoIGZpbGw9IiMzNzVBRTUiIGQ9Ik0wIDBoMjQwdjgwSDB6Ii8+PHRleHQgeD0iNTAlIiB5PSI1NSUiIGZpbGw9IiNGRkYiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtc2l6ZT0iMTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlFSSVM8L3RleHQ+PC9zdmc+" 
+                     alt="QRIS" class="h-10">
+                <i class="fab fa-cc-visa text-4xl text-blue-800"></i>
+                <i class="fab fa-cc-mastercard text-4xl text-red-600"></i>
+                <i class="fas fa-university text-3xl text-gray-700"></i>
+                <i class="fab fa-cc-paypal text-4xl text-blue-500"></i>
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNDAgODAiPjxwYXRoIGZpbGw9IiNGRjVFMDAiIGQ9Ik0wIDBoMjQwdjgwSDB6Ii8+PHRleHQgeD0iNTAlIiB5PSI1NSUiIGZpbGw9IiNGRkYiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtc2l6ZT0iMTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkdPUEFZPC90ZXh0Pjwvc3ZnPg==" 
+                     alt="Gopay" class="h-8">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNDAgODAiPjxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0wIDBoMjQwdjgwSDB6Ii8+PHRleHQgeD0iNTAlIiB5PSI1NSUiIGZpbGw9IiMwMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtc2l6ZT0iMTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk9WTzwvdGV4dD48L3N2Zz4=" 
+                     alt="OVO" class="h-8">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-blue-600 mb-4">Hubungi Kami</h2>
+                <div class="w-20 h-1 bg-blue-400 mx-auto"></div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <div class="bg-gray-50 p-6 rounded-xl">
+                        <h3 class="text-xl font-bold text-blue-600 mb-4">Informasi Kontak</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-2 rounded-full mr-4">
+                                    <i class="fas fa-map-marker-alt text-blue-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Alamat</h4>
+                                    <p class="text-gray-600">Jl. Pantai Indah No. 123, Desa Nelayan Bahagia, Kec. Pesisir, Jawa Barat</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-2 rounded-full mr-4">
+                                    <i class="fas fa-phone-alt text-blue-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Telepon/WhatsApp</h4>
+                                    <p class="text-gray-600">+62 812 3456 7890 (Customer Service)</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-2 rounded-full mr-4">
+                                    <i class="fas fa-envelope text-blue-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Email</h4>
+                                    <p class="text-gray-600">info@lautankita.id</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-2 rounded-full mr-4">
+                                    <i class="fas fa-clock text-blue-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Jam Operasional</h4>
+                                    <p class="text-gray-600">Senin - Sabtu: 08.00 - 17.00 WIB</p>
+                                    <p class="text-gray-600">Minggu: 09.00 - 15.00 WIB</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6">
+                            <h4 class="font-bold mb-3">Media Sosial</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="bg-pink-500 hover:bg-pink-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="bg-blue-400 hover:bg-blue-500 text-white w-10 h-10 rounded-full flex items-center justify-center transition">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="bg-red-500 hover:bg-red-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <div class="h-full rounded-xl overflow-hidden shadow-md">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.798511757687!2d107.6082903153286!3d-6.917720369377693!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e6254e57c819%3A0x3e3a8f5a9b4e4a1f!2sPantai%20Indah%20Kapuk!5e0!3m2!1sen!2sid!4v1623830281769!5m2!1sen!2sid" 
+                                width="100%" 
+                                height="100%" 
+                                style="min-height: 400px; border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">AneukLaot</h3>
+                    <p class="mb-4">Platform pemberdayaan UMKM nelayan tradisional Aceh untuk memasarkan produk hasil laut secara langsung.</p>
+                    <div class="flex space-x-2">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNDAgODAiPjxwYXRoIGZpbGw9IiNGRjBCMjEiIGQ9Ik0yMzkuMyA0MGMwIDIyLTE3LjkgMzkuOS0zOS45IDM5LjloLTE1OS41QzE3LjkgNzkuOSAwIDYyIDAgNDBzMTcuOS0zOS45IDM5LjktMzkuOWgxNTkuNWMyMiAwIDM5LjkgMTcuOSAzOS45IDM5Ljl6Ii8+PHRleHQgeD0iNTAlIiB5PSI1NSUiIGZpbGw9IiNGRkYiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtc2l6ZT0iMTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlByb2R1ayBMb2thbCBJbmRvbmVzaWE8L3RleHQ+PC9zdmc+" 
+                         alt="Produk Lokal Indonesia" class="h-8">
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Tautan Cepat</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-blue-300 transition">Beranda</a></li>
+                        <li><a href="#" class="hover:text-blue-300 transition">Tentang Kami</a></li>
+                        <li><a href="#" class="hover:text-blue-300 transition">Produk</a></li>
+                        <li><a href="#" class="hover:text-blue-300 transition">Pemesanan</a></li>
+                        <li><a href="#" class="hover:text-blue-300 transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-blue-300 transition">Kontak</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Produk</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-blue-300 transition">Ikan Segar</a></li>
+                        <li><a href="#" class="hover:text-blue-300 transition">Ikan Asin</a></li>
+                        <li><a href="#" class="hover:text-blue-300 transition">Abon Ikan</a></li>
+                        <li><a href="#" class="hover:text-blue-300 transition">Kerupuk Ikan</a></li>
+                        <li><a href="#" class="hover:text-blue-300 transition">Produk Lainnya</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Newsletter</h4>
+                    <p class="mb-4">Dapatkan info promo dan artikel terbaru tentang produk laut langsung ke email Anda.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Email Anda" class="px-4 py-2 rounded-l-lg w-full text-gray-800 focus:outline-none">
+                        <button type="submit" class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-r-lg transition">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-blue-800 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p>&copy; 2023 AneukLaot. Seluruh hak cipta dilindungi.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-blue-300 transition">Syarat & Ketentuan</a>
+                    <a href="#" class="hover:text-blue-300 transition">Kebijakan Privasi</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Chatbot -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <div id="chatbot-container" class="chatbot-container chatbot-hidden bg-white rounded-t-xl shadow-xl w-80 overflow-hidden">
+            <div class="bg-blue-600 text-white p-4 flex justify-between items-center">
+                <h3 class="font-bold">Asisten AI AneukLaot</h3>
+                <button id="close-chatbot" class="text-white hover:text-blue-200">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="p-4 h-64 overflow-y-auto bg-gray-50" id="chat-messages">
+                <div class="flex mb-4">
+                    <div class="bg-blue-100 p-3 rounded-lg max-w-xs">
+                        <p class="text-sm">Halo! Saya Asisten AI LautanKita. Ada yang bisa saya bantu? Anda bisa menanyakan tentang produk, stok, atau harga.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-4 border-t">
+                <div class="flex">
+                    <input type="text" id="chat-input" placeholder="Ketik pesan Anda..." class="flex-grow px-4 py-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <button id="send-chat" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-r-lg transition">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <button id="chatbot-button" class="bg-blue-600 hover:bg-blue-700 text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition">
+            <i class="fas fa-robot text-2xl"></i>
+        </button>
+    </div>
+
+    <!-- Order Tracking Modal -->
+    <div id="tracking-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-xl p-6 max-w-md w-full mx-4">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-blue-600">Lacak Pesanan</h3>
+                <button id="close-tracking" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 mb-2" for="order-number">Nomor Pesanan</label>
+                <input type="text" id="order-number" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Contoh: LK123456789">
+            </div>
+            <button id="track-order" class="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg font-bold transition">
+                Lacak Pesanan
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Chatbot Toggle
+        const chatbotButton = document.getElementById('chatbot-button');
+        const chatbotContainer = document.getElementById('chatbot-container');
+        const closeChatbot = document.getElementById('close-chatbot');
+        
+        chatbotButton.addEventListener('click', () => {
+            chatbotContainer.classList.toggle('chatbot-hidden');
+        });
+        
+        closeChatbot.addEventListener('click', () => {
+            chatbotContainer.classList.add('chatbot-hidden');
+        });
+
+        // Simple Chatbot Functionality
+        const chatInput = document.getElementById('chat-input');
+        const sendChat = document.getElementById('send-chat');
+        const chatMessages = document.getElementById('chat-messages');
+        
+        sendChat.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+        
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (message === '') return;
+            
+            // Add user message
+            addMessage(message, 'user');
+            chatInput.value = '';
+            
+            // Simulate bot response
+            setTimeout(() => {
+                const botResponse = getBotResponse(message);
+                addMessage(botResponse, 'bot');
+            }, 1000);
+        }
+        
+        function addMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `flex mb-4 ${sender === 'user' ? 'justify-end' : ''}`;
+            
+            const bubbleDiv = document.createElement('div');
+            bubbleDiv.className = sender === 'user' 
+                ? 'bg-blue-500 text-white p-3 rounded-lg max-w-xs'
+                : 'bg-blue-100 p-3 rounded-lg max-w-xs';
+            bubbleDiv.innerHTML = `<p class="text-sm">${text}</p>`;
+            
+            messageDiv.appendChild(bubbleDiv);
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        function getBotResponse(message) {
+            const lowerMessage = message.toLowerCase();
+            
+            if (lowerMessage.includes('harga') || lowerMessage.includes('berapa')) {
+                return 'Berikut daftar harga produk kami: Ikan Tenggiri Segar Rp45.000/kg, Ikan Asin Peda Rp35.000/250gr, Abon Ikan Tongkol Rp28.000/100gr, Kerupuk Ikan Tenggiri Rp22.000/100gr. Produk apa yang ingin Anda pesan?';
+            } else if (lowerMessage.includes('stok') || lowerMessage.includes('tersedia')) {
+                return 'Untuk informasi stok terbaru, bisa Anda sebutkan produk yang ingin ditanyakan? Saat ini semua produk kami tersedia dengan stok cukup.';
+            } else if (lowerMessage.includes('pengiriman') || lowerMessage.includes('kirim')) {
+                return 'Kami melakukan pengiriman setiap hari Senin-Sabtu. Gratis ongkir untuk pembelian minimal Rp150.000. Estimasi pengiriman 1-3 hari tergantung lokasi.';
+            } else if (lowerMessage.includes('pesan') || lowerMessage.includes('beli')) {
+                return 'Anda bisa langsung memesan melalui tombol "Pesan Sekarang" di website kami atau via WhatsApp di +6281234567890. Produk apa yang ingin dipesan?';
+            } else {
+                return 'Terima kasih atas pesan Anda. Untuk informasi lebih lanjut, Anda bisa mengunjungi halaman produk atau hubungi kami via WhatsApp di +6281234567890. Ada lagi yang bisa saya bantu?';
+            }
+        }
+
+        // Order Tracking Modal
+        const trackingModal = document.getElementById('tracking-modal');
+        const closeTracking = document.getElementById('close-tracking');
+        const trackOrder = document.getElementById('track-order');
+        
+        // This would normally be triggered by a button, but we'll simulate it
+        // For demo, you can uncomment this to show the modal on page load
+        // trackingModal.classList.remove('hidden');
+        
+        closeTracking.addEventListener('click', () => {
+            trackingModal.classList.add('hidden');
+        });
+        
+        trackOrder.addEventListener('click', () => {
+            const orderNumber = document.getElementById('order-number').value;
+            if (orderNumber.trim() === '') {
+                alert('Silakan masukkan nomor pesanan');
+                return;
+            }
+            
+            // Simulate tracking
+            alert(`Pesanan ${orderNumber} sedang dalam proses pengiriman. Estimasi tiba dalam 2 hari kerja.`);
+            trackingModal.classList.add('hidden');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+<p style="border-radius: 8px; text-align: center; font-size: 12px; color: #fff; margin-top: 16px;position: fixed; left: 8px; bottom: 8px; z-index: 10; background: rgba(0, 0, 0, 0.8); padding: 4px 8px;">Made with <img src="https://enzostvs-deepsite.hf.space/logo.svg" alt="DeepSite Logo" style="width: 16px; height: 16px; vertical-align: middle;display:inline-block;margin-right:3px;filter:brightness(0) invert(1);"><a href="https://enzostvs-deepsite.hf.space" style="color: #fff;text-decoration: underline;" target="_blank" >DeepSite</a> - 🧬 <a href="https://enzostvs-deepsite.hf.space?remix=zhafranzz/aneuklaot" style="color: #fff;text-decoration: underline;" target="_blank" >Remix</a></p></body>
+</html>
