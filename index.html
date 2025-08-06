@@ -725,21 +725,36 @@
         }
         
         function getBotResponse(message) {
-            const lowerMessage = message.toLowerCase();
-            
-            if (lowerMessage.includes('harga') || lowerMessage.includes('berapa')) {
-                return 'Berikut daftar harga produk kami: Ikan Tenggiri Segar Rp45.000/kg, Ikan Asin Peda Rp35.000/250gr, Abon Ikan Tongkol Rp28.000/100gr, Kerupuk Ikan Tenggiri Rp22.000/100gr. Produk apa yang ingin Anda pesan?';
-            } else if (lowerMessage.includes('stok') || lowerMessage.includes('tersedia')) {
-                return 'Untuk informasi stok terbaru, bisa Anda sebutkan produk yang ingin ditanyakan? Saat ini semua produk kami tersedia dengan stok cukup.';
-            } else if (lowerMessage.includes('pengiriman') || lowerMessage.includes('kirim')) {
-                return 'Kami melakukan pengiriman setiap hari Senin-Sabtu. Gratis ongkir untuk pembelian minimal Rp150.000. Estimasi pengiriman 1-3 hari tergantung lokasi.';
-            } else if (lowerMessage.includes('pesan') || lowerMessage.includes('beli')) {
-                return 'Anda bisa langsung memesan melalui tombol "Pesan Sekarang" di website kami atau via WhatsApp di +6281234567890. Produk apa yang ingin dipesan?';
-            } else {
-                return 'Terima kasih atas pesan Anda. Untuk informasi lebih lanjut, Anda bisa mengunjungi halaman produk atau hubungi kami via WhatsApp di +6281234567890. Ada lagi yang bisa saya bantu?';
-            }
-        }
+    const lowerMessage = message.toLowerCase();
 
+    // Responses for product-related questions
+    if (lowerMessage.includes('harga') || lowerMessage.includes('berapa')) {
+        return 'Untuk harga produk, Anda bisa melihat di bagian "Produk Kami". Harga bisa berubah sesuai musim. Produk mana yang ingin Anda ketahui harganya?';
+    } else if (lowerMessage.includes('stok') || lowerMessage.includes('tersedia')) {
+        return 'Stok produk kami selalu diperbarui setiap hari. Produk apa yang ingin Anda cek ketersediaannya?';
+    } else if (lowerMessage.includes('pesan') || lowerMessage.includes('beli')) {
+        return 'Anda bisa memesan langsung melalui halaman "Pesan Cepat" atau hubungi kami via WhatsApp di +6281234567890 untuk bantuan lebih lanjut.';
+    }
+
+    // Responses for fisherman-specific questions (AI Consultant)
+    if (lowerMessage.includes('cuaca') || lowerMessage.includes('ombak') || lowerMessage.includes('gelombang')) {
+        return 'Informasi cuaca dan kondisi laut sangat penting! Saat ini, kondisi laut diperkirakan tenang dengan gelombang rendah. Selalu periksa prakiraan cuaca terbaru dari BMKG sebelum melaut.';
+    } else if (lowerMessage.includes('perizinan') || lowerMessage.includes('izin') || lowerMessage.includes('surat izin')) {
+        return 'Untuk perizinan melaut, pastikan Anda memiliki Surat Izin Penangkapan Ikan (SIPI) yang masih berlaku. Anda bisa mengurusnya di dinas kelautan dan perikanan setempat.';
+    } else if (lowerMessage.includes('pemasaran') || lowerMessage.includes('jual')) {
+        return 'Selain melalui AneukLaot, Anda bisa memperluas pemasaran dengan memanfaatkan media sosial, bergabung dengan koperasi nelayan, atau menjalin kemitraan dengan hotel dan restoran.';
+    } else if (lowerMessage.includes('mengelola') || lowerMessage.includes('penyimpanan')) {
+        return 'Untuk menjaga kesegaran, simpan hasil tangkapan di tempat dingin. Gunakan es yang cukup dan pastikan ikan tidak terkena air tawar secara langsung.';
+    }
+
+    // General greetings and fallback
+    if (lowerMessage.includes('halo') || lowerMessage.includes('hai') || lowerMessage.includes('selamat')) {
+        return 'Halo! Saya Asisten AI AneukLaot. Ada yang bisa saya bantu? Anda bisa bertanya tentang cuaca, pemasaran, perizinan, atau produk kami.';
+    }
+
+    // Default fallback response
+    return 'Mohon maaf, saya belum memahami pertanyaan Anda. Saya masih dalam tahap pengembangan. Anda bisa bertanya tentang cuaca, perizinan, atau pemasaran.';
+}
         // Order Tracking Modal
         const trackingModal = document.getElementById('tracking-modal');
         const closeTracking = document.getElementById('close-tracking');
