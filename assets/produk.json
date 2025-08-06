@@ -43,5 +43,14 @@
     "satuan": "1kg",
     "gambar": "https://images.unsplash.com/photo-1549420063-7c9c0429f44a?q=80&w=1470&auto=format&fit=crop",
     "tag": "Premium"
+  },
+  {
+    "id": 6,
+    "nama": "Cumi-cumi Segar",
+    "deskripsi": "Ditangkap dengan cara tradisional, tekstur kenyal dan manis.",
+    "harga": 60000,
+    "satuan": "kg",
+    "gambar": "https://images.unsplash.com/photo-1579208030230-bb02871626f2?q=80&w=1470&auto=format&fit=crop",
+    "tag": "Terbatas"
   }
 ]
