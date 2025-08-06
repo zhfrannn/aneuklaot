@@ -855,5 +855,39 @@ fetch('assets/produk.json')
     console.error('Gagal memuat produk:', err);
   });
 </script>
+<script>
+// Function to handle the quick order form submission
+const quickOrderForm = document.querySelector('#order form');
+
+quickOrderForm.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the form from submitting normally
+
+    // Get the values from the form inputs
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const product = document.getElementById('product').value;
+    const note = document.getElementById('note').value;
+
+    // The WhatsApp number of the owner/admin
+    const whatsappNumber = '6281234567890'; // Ganti dengan nomor WhatsApp Anda
+
+    // Create the message text, encoding it for a URL
+    const message = encodeURIComponent(
+        `Halo AneukLaot, saya ingin memesan produk:\n\n` +
+        `*Nama*: ${name}\n` +
+        `*Nomor WA*: ${phone}\n` +
+        `*Produk*: ${product}\n` +
+        `*Catatan*: ${note || '-'}\n\n` +
+        `Mohon konfirmasi pesanan saya. Terima kasih!`
+    );
+
+    // Create the full WhatsApp URL
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
+
+    // Open the URL in a new window/tab
+    window.open(whatsappUrl, '_blank');
+});
+</script>
+    
 </body>
 </html>
