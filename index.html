@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -39,7 +38,6 @@
     </style>
 </head>
 <body class="text-gray-800">
-    <!-- Navigation -->
     <nav class="bg-white shadow-md sticky top-0 z-50">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center">
@@ -51,7 +49,7 @@
             <div class="hidden md:flex space-x-8">
                 <a href="#home" class="text-blue-600 font-medium hover:text-blue-400 transition">Beranda</a>
                 <a href="#about" class="text-gray-600 hover:text-blue-500 transition">Tentang Kami</a>
-                <a href="#products" class="text-gray-600 hover:text-blue-500 transition">Produk</a>
+                <a href="products.html" class="text-gray-600 hover:text-blue-500 transition">Produk</a>
                 <a href="#blog" class="text-gray-600 hover:text-blue-500 transition">Cerita Nelayan</a>
                 <a href="#contact" class="text-gray-600 hover:text-blue-500 transition">Kontak</a>
             </div>
@@ -62,17 +60,15 @@
                 </button>
             </div>
         </div>
-        <!-- Mobile Menu -->
         <div class="md:hidden hidden bg-white w-full py-2 px-4 shadow-md" id="mobile-menu">
             <a href="#home" class="block py-2 text-blue-600 font-medium">Beranda</a>
             <a href="#about" class="block py-2 text-gray-600 hover:text-blue-500">Tentang Kami</a>
-            <a href="#products" class="block py-2 text-gray-600 hover:text-blue-500">Produk</a>
+            <a href="products.html" class="block py-2 text-gray-600 hover:text-blue-500">Produk</a>
             <a href="#blog" class="block py-2 text-gray-600 hover:text-blue-500">Cerita Nelayan</a>
             <a href="#contact" class="block py-2 text-gray-600 hover:text-blue-500">Kontak</a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section id="home" class="text-white pb-32 pt-20 relative overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-b from-blue-600 to-transparent opacity-80"></div>
         <div class="container mx-auto px-4 flex flex-col md:flex-row items-center relative z-10">
@@ -80,7 +76,7 @@
                 <h1 class="text-4xl md:text-5xl font-bold mb-4">Ikan Segar Langsung dari Nelayan</h1>
                 <p class="text-xl mb-8">Dukung ekonomi lokal dengan membeli produk hasil tangkapan nelayan tradisional kami. Segar, alami, dan ramah lingkungan.</p>
                 <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                    <a href="#products" class="bg-white text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-full font-bold text-center shadow-lg transition">Belanja Sekarang</a>
+                    <a href="products.html" class="bg-white text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-full font-bold text-center shadow-lg transition">Belanja Sekarang</a>
                     <a href="#about" class="border-2 border-white hover:bg-white hover:text-blue-600 px-6 py-3 rounded-full font-bold text-center transition">Kenali Nelayan Kami</a>
                 </div>
                 <div class="mt-8 flex items-center">
@@ -122,7 +118,6 @@
         </div>
     </section>
 
-    <!-- Trust Badges -->
     <section class="bg-white py-8 -mt-16">
         <div class="container mx-auto px-4">
             <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16">
@@ -146,7 +141,6 @@
         </div>
     </section>
 
-    <!-- About Section -->
     <section id="about" class="py-16 bg-blue-50">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
@@ -191,7 +185,6 @@
         </div>
     </section>
 
-    <!-- Products Section -->
     <section id="products" class="py-16 bg-white">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
@@ -200,7 +193,6 @@
                 <div class="w-20 h-1 bg-blue-400 mx-auto mt-4"></div>
             </div>
             
-            <!-- Product Filters -->
             <div class="flex flex-wrap justify-center mb-8 gap-2">
                 <button class="px-4 py-2 bg-blue-500 text-white rounded-full font-medium">Semua</button>
                 <button class="px-4 py-2 bg-gray-100 hover:bg-blue-100 rounded-full">Ikan Segar</button>
@@ -210,9 +202,8 @@
                 <button class="px-4 py-2 bg-gray-100 hover:bg-blue-100 rounded-full">Produk Lainnya</button>
             </div>
             
-            <!-- Product Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-  </div>
+                </div>
             
             <div class="text-center mt-12">
                 <a href="products.html" class="inline-block border-2 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white px-6 py-3 rounded-full font-bold transition">
@@ -222,7 +213,6 @@
         </div>
     </section>
 
-    <!-- Quick Order Section -->
     <section id="order" class="py-16 bg-blue-600 text-white">
         <div class="container mx-auto px-4">
             <div class="max-w-4xl mx-auto bg-white text-gray-800 rounded-xl shadow-xl overflow-hidden">
@@ -250,7 +240,7 @@
                         </div>
                     </div>
                     <div class="md:w-1/2 p-8">
-                        <form>
+                        <form id="quick-order-form">
                             <div class="mb-4">
                                 <label class="block text-gray-700 mb-2" for="name">Nama Lengkap</label>
                                 <input type="text" id="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -285,10 +275,10 @@
             <div class="mt-8 text-center">
                 <p class="mb-4">Atau hubungi kami langsung via:</p>
                 <div class="flex justify-center space-x-4">
-                    <a href="#" class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full font-bold inline-flex items-center transition">
+                    <a href="https://wa.me/6281234567890" target="_blank" class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full font-bold inline-flex items-center transition">
                         <i class="fab fa-whatsapp mr-2 text-xl"></i> WhatsApp
                     </a>
-                    <a href="#" class="bg-blue-400 hover:bg-blue-500 text-white px-6 py-3 rounded-full font-bold inline-flex items-center transition">
+                    <a href="#" id="chatbot-link" class="bg-blue-400 hover:bg-blue-500 text-white px-6 py-3 rounded-full font-bold inline-flex items-center transition">
                         <i class="fas fa-robot mr-2 text-xl"></i> AI Assistant
                     </a>
                 </div>
@@ -296,7 +286,6 @@
         </div>
     </section>
 
-    <!-- Testimonials -->
     <section class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
@@ -305,7 +294,6 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Testimonial 1 -->
                 <div class="bg-white p-6 rounded-xl shadow-md">
                     <div class="flex items-center mb-4">
                         <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Customer" class="w-12 h-12 rounded-full mr-4">
@@ -323,7 +311,6 @@
                     <p class="text-gray-600 italic">"Ikan tenggirinya selalu segar dan harganya lebih murah dibanding pasar modern. Pengiriman cepat dan packing rapi. Sudah langganan 2 tahun!"</p>
                 </div>
                 
-                <!-- Testimonial 2 -->
                 <div class="bg-white p-6 rounded-xl shadow-md">
                     <div class="flex items-center mb-4">
                         <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Customer" class="w-12 h-12 rounded-full mr-4">
@@ -341,7 +328,6 @@
                     <p class="text-gray-600 italic">"Abon ikan tongkolnya enak banget, anak-anak suka. Sekarang selalu stok di rumah. Senang bisa langsung beli dari nelayannya."</p>
                 </div>
                 
-                <!-- Testimonial 3 -->
                 <div class="bg-white p-6 rounded-xl shadow-md">
                     <div class="flex items-center mb-4">
                         <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Customer" class="w-12 h-12 rounded-full mr-4">
@@ -362,7 +348,6 @@
         </div>
     </section>
 
-    <!-- Blog Section -->
     <section id="blog" class="py-16 bg-white">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
@@ -372,7 +357,6 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Article 1 -->
                 <article class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition">
                     <img src="https://images.unsplash.com/photo-1560275619-4662e36fa65c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
                          alt="Kehidupan Nelayan" 
@@ -392,7 +376,6 @@
                     </div>
                 </article>
                 
-                <!-- Article 2 -->
                 <article class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition">
                     <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" 
                          alt="Resep Masakan" 
@@ -412,7 +395,6 @@
                     </div>
                 </article>
                 
-                <!-- Article 3 -->
                 <article class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition">
                     <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
                          alt="Keberlanjutan" 
@@ -441,7 +423,6 @@
         </div>
     </section>
 
-    <!-- Payment Methods -->
     <section class="py-12 bg-blue-50">
         <div class="container mx-auto px-4">
             <div class="text-center mb-8">
@@ -464,7 +445,6 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact" class="py-16 bg-white">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
@@ -542,7 +522,7 @@
                 
                 <div class="md:w-1/2">
                     <div class="h-full rounded-xl overflow-hidden shadow-md">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.798511757687!2d107.6082903153286!3d-6.917720369377693!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e6254e57c819%3A0x3e3a8f5a9b4e4a1f!2sPantai%20Indah%20Kapuk!5e0!3m2!1sen!2sid!4v1623830281769!5m2!1sen!2sid" 
+                        <iframe src="https://maps.google.com/maps?q=Banda%20Aceh&t=&z=13&ie=UTF8&iwloc=&output=embed" 
                                 width="100%" 
                                 height="100%" 
                                 style="min-height: 400px; border:0;" 
@@ -555,7 +535,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="bg-blue-900 text-white pt-12 pb-6">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
@@ -604,7 +583,7 @@
             </div>
             
             <div class="border-t border-blue-800 pt-6 flex flex-col md:flex-row justify-between items-center">
-                <p>&copy; 2023 AneukLaot. Seluruh hak cipta dilindungi.</p>
+                <p>© 2023 AneukLaot. Seluruh hak cipta dilindungi.</p>
                 <div class="flex space-x-6 mt-4 md:mt-0">
                     <a href="#" class="hover:text-blue-300 transition">Syarat & Ketentuan</a>
                     <a href="#" class="hover:text-blue-300 transition">Kebijakan Privasi</a>
@@ -613,7 +592,6 @@
         </div>
     </footer>
 
-    <!-- AI Chatbot -->
     <div class="fixed bottom-6 right-6 z-50">
         <div id="chatbot-container" class="chatbot-container chatbot-hidden bg-white rounded-t-xl shadow-xl w-80 overflow-hidden">
             <div class="bg-blue-600 text-white p-4 flex justify-between items-center">
@@ -625,7 +603,7 @@
             <div class="p-4 h-64 overflow-y-auto bg-gray-50" id="chat-messages">
                 <div class="flex mb-4">
                     <div class="bg-blue-100 p-3 rounded-lg max-w-xs">
-                        <p class="text-sm">Halo! Saya Asisten AI LautanKita. Ada yang bisa saya bantu? Anda bisa menanyakan tentang produk, stok, atau harga.</p>
+                        <p class="text-sm">Halo! Saya Asisten AI AneukLaot. Ada yang bisa saya bantu? Anda bisa menanyakan tentang cuaca, pemasaran, perizinan, atau produk kami.</p>
                     </div>
                 </div>
             </div>
@@ -643,66 +621,75 @@
         </button>
     </div>
 
-    <!-- Order Tracking Modal -->
-    <div id="tracking-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-        <div class="bg-white rounded-xl p-6 max-w-md w-full mx-4">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-bold text-blue-600">Lacak Pesanan</h3>
-                <button id="close-tracking" class="text-gray-500 hover:text-gray-700">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="mb-4">
-                <label class="block text-gray-700 mb-2" for="order-number">Nomor Pesanan</label>
-                <input type="text" id="order-number" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Contoh: LK123456789">
-            </div>
-            <button id="track-order" class="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg font-bold transition">
-                Lacak Pesanan
-            </button>
-        </div>
-    </div>
-
     <script>
+        // === FUNGSI UMUM ===
         // Mobile Menu Toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
-        
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+        if (mobileMenuButton) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
         });
 
-        // Chatbot Toggle
+        // === FUNGSI AI KONSULTAN (CHATBOT) ===
         const chatbotButton = document.getElementById('chatbot-button');
         const chatbotContainer = document.getElementById('chatbot-container');
         const closeChatbot = document.getElementById('close-chatbot');
-        
-        chatbotButton.addEventListener('click', () => {
-            chatbotContainer.classList.toggle('chatbot-hidden');
-        });
-        
-        closeChatbot.addEventListener('click', () => {
-            chatbotContainer.classList.add('chatbot-hidden');
-        });
-
-        // Simple Chatbot Functionality
         const chatInput = document.getElementById('chat-input');
         const sendChat = document.getElementById('send-chat');
         const chatMessages = document.getElementById('chat-messages');
+        const chatbotLink = document.getElementById('chatbot-link');
+
+        if (chatbotButton) {
+            chatbotButton.addEventListener('click', () => {
+                chatbotContainer.classList.toggle('chatbot-hidden');
+            });
+        }
         
-        sendChat.addEventListener('click', sendMessage);
-        chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') sendMessage();
-        });
+        if (closeChatbot) {
+            closeChatbot.addEventListener('click', () => {
+                chatbotContainer.classList.add('chatbot-hidden');
+            });
+        }
+
+        if (chatbotLink) {
+            chatbotLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                chatbotContainer.classList.remove('chatbot-hidden');
+            });
+        }
+
+        if (sendChat) {
+            sendChat.addEventListener('click', sendMessage);
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') sendMessage();
+            });
+        }
         
         function sendMessage() {
             const message = chatInput.value.trim();
             if (message === '') return;
-            
-            // Add user message
             addMessage(message, 'user');
             chatInput.value = '';
-            
-            // Simulate bot response
             setTimeout(() => {
                 const botResponse = getBotResponse(message);
                 addMessage(botResponse, 'bot');
@@ -712,197 +699,107 @@
         function addMessage(text, sender) {
             const messageDiv = document.createElement('div');
             messageDiv.className = `flex mb-4 ${sender === 'user' ? 'justify-end' : ''}`;
-            
             const bubbleDiv = document.createElement('div');
             bubbleDiv.className = sender === 'user' 
                 ? 'bg-blue-500 text-white p-3 rounded-lg max-w-xs'
                 : 'bg-blue-100 p-3 rounded-lg max-w-xs';
             bubbleDiv.innerHTML = `<p class="text-sm">${text}</p>`;
-            
             messageDiv.appendChild(bubbleDiv);
             chatMessages.appendChild(messageDiv);
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
-        
+
         function getBotResponse(message) {
-    const lowerMessage = message.toLowerCase();
+            const lowerMessage = message.toLowerCase();
 
-    // Responses for product-related questions
-    if (lowerMessage.includes('harga') || lowerMessage.includes('berapa')) {
-        return 'Untuk harga produk, Anda bisa melihat di bagian "Produk Kami". Harga bisa berubah sesuai musim. Produk mana yang ingin Anda ketahui harganya?';
-    } else if (lowerMessage.includes('stok') || lowerMessage.includes('tersedia')) {
-        return 'Stok produk kami selalu diperbarui setiap hari. Produk apa yang ingin Anda cek ketersediaannya?';
-    } else if (lowerMessage.includes('pesan') || lowerMessage.includes('beli')) {
-        return 'Anda bisa memesan langsung melalui halaman "Pesan Cepat" atau hubungi kami via WhatsApp di +6281234567890 untuk bantuan lebih lanjut.';
-    }
-
-    // Responses for fisherman-specific questions (AI Consultant)
-    if (lowerMessage.includes('cuaca') || lowerMessage.includes('ombak') || lowerMessage.includes('gelombang')) {
-        return 'Informasi cuaca dan kondisi laut sangat penting! Saat ini, kondisi laut diperkirakan tenang dengan gelombang rendah. Selalu periksa prakiraan cuaca terbaru dari BMKG sebelum melaut.';
-    } else if (lowerMessage.includes('perizinan') || lowerMessage.includes('izin') || lowerMessage.includes('surat izin')) {
-        return 'Untuk perizinan melaut, pastikan Anda memiliki Surat Izin Penangkapan Ikan (SIPI) yang masih berlaku. Anda bisa mengurusnya di dinas kelautan dan perikanan setempat.';
-    } else if (lowerMessage.includes('pemasaran') || lowerMessage.includes('jual')) {
-        return 'Selain melalui AneukLaot, Anda bisa memperluas pemasaran dengan memanfaatkan media sosial, bergabung dengan koperasi nelayan, atau menjalin kemitraan dengan hotel dan restoran.';
-    } else if (lowerMessage.includes('mengelola') || lowerMessage.includes('penyimpanan')) {
-        return 'Untuk menjaga kesegaran, simpan hasil tangkapan di tempat dingin. Gunakan es yang cukup dan pastikan ikan tidak terkena air tawar secara langsung.';
-    }
-
-    // General greetings and fallback
-    if (lowerMessage.includes('halo') || lowerMessage.includes('hai') || lowerMessage.includes('selamat')) {
-        return 'Halo! Saya Asisten AI AneukLaot. Ada yang bisa saya bantu? Anda bisa bertanya tentang cuaca, pemasaran, perizinan, atau produk kami.';
-    }
-
-    // Default fallback response
-    return 'Mohon maaf, saya belum memahami pertanyaan Anda. Saya masih dalam tahap pengembangan. Anda bisa bertanya tentang cuaca, perizinan, atau pemasaran.';
-}
-        // Order Tracking Modal
-        const trackingModal = document.getElementById('tracking-modal');
-        const closeTracking = document.getElementById('close-tracking');
-        const trackOrder = document.getElementById('track-order');
-        
-        // This would normally be triggered by a button, but we'll simulate it
-        // For demo, you can uncomment this to show the modal on page load
-        // trackingModal.classList.remove('hidden');
-        
-        closeTracking.addEventListener('click', () => {
-            trackingModal.classList.add('hidden');
-        });
-        
-        trackOrder.addEventListener('click', () => {
-            const orderNumber = document.getElementById('order-number').value;
-            if (orderNumber.trim() === '') {
-                alert('Silakan masukkan nomor pesanan');
-                return;
+            // Responses for product-related questions
+            if (lowerMessage.includes('harga') || lowerMessage.includes('berapa')) {
+                return 'Untuk harga produk, Anda bisa melihat di bagian "Produk Kami". Harga bisa berubah sesuai musim. Produk mana yang ingin Anda ketahui harganya?';
+            } else if (lowerMessage.includes('stok') || lowerMessage.includes('tersedia')) {
+                return 'Stok produk kami selalu diperbarui setiap hari. Produk apa yang ingin Anda cek ketersediaannya?';
+            } else if (lowerMessage.includes('pesan') || lowerMessage.includes('beli')) {
+                return 'Anda bisa memesan langsung melalui halaman "Pesan Cepat" atau hubungi kami via WhatsApp di +6281234567890 untuk bantuan lebih lanjut.';
             }
-            
-            // Simulate tracking
-            alert(`Pesanan ${orderNumber} sedang dalam proses pengiriman. Estimasi tiba dalam 2 hari kerja.`);
-            trackingModal.classList.add('hidden');
-        });
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    if (!mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
-                    }
-                }
+            // Responses for fisherman-specific questions (AI Consultant)
+            if (lowerMessage.includes('cuaca') || lowerMessage.includes('ombak') || lowerMessage.includes('gelombang')) {
+                return 'Informasi cuaca dan kondisi laut sangat penting! Saat ini, kondisi laut diperkirakan tenang dengan gelombang rendah. Selalu periksa prakiraan cuaca terbaru dari BMKG sebelum melaut.';
+            } else if (lowerMessage.includes('perizinan') || lowerMessage.includes('izin') || lowerMessage.includes('surat izin')) {
+                return 'Untuk perizinan melaut, pastikan Anda memiliki Surat Izin Penangkapan Ikan (SIPI) yang masih berlaku. Anda bisa mengurusnya di dinas kelautan dan perikanan setempat.';
+            } else if (lowerMessage.includes('pemasaran') || lowerMessage.includes('jual')) {
+                return 'Selain melalui AneukLaot, Anda bisa memperluas pemasaran dengan memanfaatkan media sosial, bergabung dengan koperasi nelayan, atau menjalin kemitraan dengan hotel dan restoran.';
+            } else if (lowerMessage.includes('mengelola') || lowerMessage.includes('penyimpanan')) {
+                return 'Untuk menjaga kesegaran, simpan hasil tangkapan di tempat dingin. Gunakan es yang cukup dan pastikan ikan tidak terkena air tawar secara langsung.';
+            }
+
+            // General greetings and fallback
+            if (lowerMessage.includes('halo') || lowerMessage.includes('hai') || lowerMessage.includes('selamat')) {
+                return 'Halo! Saya Asisten AI AneukLaot. Ada yang bisa saya bantu? Anda bisa bertanya tentang cuaca, pemasaran, perizinan, atau produk kami.';
+            }
+
+            // Default fallback response
+            return 'Mohon maaf, saya belum memahami pertanyaan Anda. Saya masih dalam tahap pengembangan. Anda bisa bertanya tentang cuaca, perizinan, atau pemasaran.';
+        }
+
+        // === FUNGSI MARKETPLACE DINAMIS ===
+        fetch('produk.json')
+          .then(res => res.json())
+          .then(data => {
+            const productGrid = document.querySelector('#products .grid');
+            if (productGrid) {
+              productGrid.innerHTML = '';
+              data.slice(0, 4).forEach(product => { // Menampilkan 4 produk pertama di halaman utama
+                const card = document.createElement('div');
+                card.className = 'product-card bg-white rounded-xl overflow-hidden shadow-md transition duration-300';
+                card.innerHTML = `
+                  <div class="relative">
+                    <img src="${product.gambar}" alt="${product.nama}" class="w-full h-48 object-cover">
+                    ${product.tag ? `<div class="absolute top-2 right-2 bg-blue-500 text-white text-xs px-2 py-1 rounded-full">
+                      <i class="fas fa-bolt mr-1"></i> ${product.tag}
+                    </div>` : ''}
+                  </div>
+                  <div class="p-4">
+                    <h3 class="font-bold text-lg mb-1">${product.nama}</h3>
+                    <p class="text-gray-600 text-sm mb-3">${product.deskripsi}</p>
+                    <div class="flex justify-between items-center">
+                      <span class="font-bold text-blue-600">Rp ${product.harga.toLocaleString('id-ID')}/${product.satuan}</span>
+                      <button class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-full text-sm transition">
+                        <i class="fas fa-cart-plus mr-1"></i> Pesan
+                      </button>
+                    </div>
+                  </div>
+                `;
+                productGrid.appendChild(card);
+              });
+            }
+          })
+          .catch(err => {
+            console.error('Gagal memuat produk:', err);
+          });
+
+        // === FUNGSI FORMULIR PESAN CEPAT VIA WHATSAPP ===
+        const quickOrderForm = document.querySelector('#quick-order-form');
+        if (quickOrderForm) {
+            quickOrderForm.addEventListener('submit', function(event) {
+                event.preventDefault(); 
+                const name = document.getElementById('name').value;
+                const phone = document.getElementById('phone').value;
+                const product = document.getElementById('product').value;
+                const note = document.getElementById('note').value;
+                const whatsappNumber = '6281234567890'; // Ganti dengan nomor WhatsApp Anda
+                const message = encodeURIComponent(
+                    `Halo AneukLaot, saya ingin memesan produk:\n\n` +
+                    `*Nama*: ${name}\n` +
+                    `*Nomor WA*: ${phone}\n` +
+                    `*Produk*: ${product}\n` +
+                    `*Catatan*: ${note || '-'}\n\n` +
+                    `Mohon konfirmasi pesanan saya. Terima kasih!`
+                );
+                const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
+                window.open(whatsappUrl, '_blank');
             });
-        });
-    <script>
-fetch('/produk/produk.json')
-  .then(res => res.json())
-  .then(data => {
-    const grid = document.querySelector('#products .grid');
-    grid.innerHTML = '';
-    data.forEach(produk => {
-      const card = document.createElement('div');
-      card.className = 'product-card bg-white rounded-xl overflow-hidden shadow-md transition duration-300';
-      card.innerHTML = `
-        <div class="relative">
-          <img src="${produk.image}" class="w-full h-48 object-cover">
-          <div class="absolute top-2 right-2 bg-blue-500 text-white text-xs px-2 py-1 rounded-full">
-            <i class="fas fa-bolt mr-1"></i> ${produk.kategori}
-          </div>
-        </div>
-        <div class="p-4">
-          <h3 class="font-bold text-lg mb-1">${produk.title}</h3>
-          <p class="text-gray-600 text-sm mb-3">${produk.deskripsi}</p>
-          <div class="flex justify-between items-center">
-            <span class="font-bold text-blue-600">Rp ${produk.harga}</span>
-            <button class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-full text-sm transition">
-              <i class="fas fa-cart-plus mr-1"></i> Pesan
-            </button>
-          </div>
-        </div>
-      `;
-      grid.appendChild(card);
-    });
-  })
-  .catch(err => {
-    console.error('Gagal load produk:', err);
-  });
-</script>
-<script>
-fetch('assets/produk.json')
-  .then(res => res.json())
-  .then(data => {
-    const productGrid = document.querySelector('#products .grid');
-    productGrid.innerHTML = ''; // Hapus produk statis yang mungkin masih ada
-    
-    data.forEach(product => {
-      const card = document.createElement('div');
-      card.className = 'product-card bg-white rounded-xl overflow-hidden shadow-md transition duration-300';
-      card.innerHTML = `
-        <div class="relative">
-          <img src="${product.gambar}" alt="${product.nama}" class="w-full h-48 object-cover">
-          ${product.tag ? `<div class="absolute top-2 right-2 bg-blue-500 text-white text-xs px-2 py-1 rounded-full">
-            <i class="fas fa-bolt mr-1"></i> ${product.tag}
-          </div>` : ''}
-        </div>
-        <div class="p-4">
-          <h3 class="font-bold text-lg mb-1">${product.nama}</h3>
-          <p class="text-gray-600 text-sm mb-3">${product.deskripsi}</p>
-          <div class="flex justify-between items-center">
-            <span class="font-bold text-blue-600">Rp ${product.harga.toLocaleString('id-ID')}/${product.satuan}</span>
-            <button class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-full text-sm transition">
-              <i class="fas fa-cart-plus mr-1"></i> Pesan
-            </button>
-          </div>
-        </div>
-      `;
-      productGrid.appendChild(card);
-    });
-  })
-  .catch(err => {
-    console.error('Gagal memuat produk:', err);
-  });
-</script>
-<script>
-// Function to handle the quick order form submission
-const quickOrderForm = document.querySelector('#order form');
+        }
+    </script>
 
-quickOrderForm.addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the form from submitting normally
-
-    // Get the values from the form inputs
-    const name = document.getElementById('name').value;
-    const phone = document.getElementById('phone').value;
-    const product = document.getElementById('product').value;
-    const note = document.getElementById('note').value;
-
-    // The WhatsApp number of the owner/admin
-    const whatsappNumber = '6285296443101'; // Ganti dengan nomor WhatsApp Anda
-
-    // Create the message text, encoding it for a URL
-    const message = encodeURIComponent(
-        `Halo AneukLaot, saya ingin memesan produk:\n\n` +
-        `*Nama*: ${name}\n` +
-        `*Nomor WA*: ${phone}\n` +
-        `*Produk*: ${product}\n` +
-        `*Catatan*: ${note || '-'}\n\n` +
-        `Mohon konfirmasi pesanan saya. Terima kasih!`
-    );
-
-    // Create the full WhatsApp URL
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
-
-    // Open the URL in a new window/tab
-    window.open(whatsappUrl, '_blank');
-});
-</script>
-    
 </body>
 </html>
