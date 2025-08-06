@@ -622,205 +622,214 @@
     </div>
 
     <script>
-        // === FUNGSI UMUM ===
-        // Mobile Menu Toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        if (mobileMenuButton) {
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-        }
+    // === FUNGSI UMUM ===
+    // Mobile Menu Toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenuButton) {
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
-                    }
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+                if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
                 }
-            });
+            }
+        });
+    });
+
+    // === FUNGSI AI KONSULTAN (CHATBOT) DENGAN INTEGRASI GEMINI ===
+    
+    // Ganti dengan API Key Gemini Anda yang sebenarnya
+    const GEMINI_API_KEY = 'AIzaSyCWu6g5kmMxcge1SLZs9EcHnDwIJbEZhxQ'; 
+    const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`;
+    
+    const chatbotButton = document.getElementById('chatbot-button');
+    const chatbotContainer = document.getElementById('chatbot-container');
+    const closeChatbot = document.getElementById('close-chatbot');
+    const chatInput = document.getElementById('chat-input');
+    const sendChat = document.getElementById('send-chat');
+    const chatMessages = document.getElementById('chat-messages');
+    const chatbotLink = document.getElementById('chatbot-link');
+
+    if (chatbotButton) {
+        chatbotButton.addEventListener('click', () => {
+            chatbotContainer.classList.toggle('chatbot-hidden');
+        });
+    }
+    
+    if (closeChatbot) {
+        closeChatbot.addEventListener('click', () => {
+            chatbotContainer.classList.add('chatbot-hidden');
+        });
+    }
+
+    if (chatbotLink) {
+        chatbotLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            chatbotContainer.classList.remove('chatbot-hidden');
+        });
+    }
+
+    if (sendChat) {
+        sendChat.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+    }
+
+    async function sendMessage() {
+        const userMessage = chatInput.value.trim();
+        if (userMessage === '') return;
+        
+        addMessage(userMessage, 'user');
+        chatInput.value = '';
+        
+        // Tampilkan pesan "sedang mengetik"
+        const typingMessageElement = addMessage('...', 'bot-typing');
+        
+        try {
+            const geminiResponse = await getGeminiResponse(userMessage);
+            updateMessage(typingMessageElement, geminiResponse, 'bot');
+        } catch (error) {
+            console.error('Gemini API Error:', error);
+            updateMessage(typingMessageElement, 'Maaf, terjadi kesalahan saat menghubungi asisten AI. Silakan coba lagi.', 'bot-error');
+        }
+    }
+    
+    function addMessage(text, sender) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `flex mb-4 ${sender === 'user' ? 'justify-end' : ''}`;
+        
+        const bubbleDiv = document.createElement('div');
+        bubbleDiv.className = sender === 'user' 
+            ? 'bg-blue-500 text-white p-3 rounded-lg max-w-xs'
+            : 'bg-blue-100 p-3 rounded-lg max-w-xs';
+        bubbleDiv.innerHTML = `<p class="text-sm">${text}</p>`;
+        
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        return bubbleDiv;
+    }
+
+    function updateMessage(element, newText, newSenderClass) {
+        element.innerHTML = `<p class="text-sm">${newText}</p>`;
+        element.className = newSenderClass === 'user' 
+            ? 'bg-blue-500 text-white p-3 rounded-lg max-w-xs'
+            : 'bg-blue-100 p-3 rounded-lg max-w-xs';
+    }
+    
+    async function getGeminiResponse(prompt) {
+        const payload = {
+            contents: [{
+                parts: [{
+                    text: prompt
+                }]
+            }]
+        };
+
+        const response = await fetch(GEMINI_API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
         });
 
-        // === FUNGSI AI KONSULTAN (CHATBOT) DENGAN INTEGRASI GEMINI ===
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
         
-        // Ganti dengan API Key Gemini Anda yang sebenarnya
-        const GEMINI_API_KEY = 'AIzaSyCWu6g5kmMxcge1SLZs9EcHnDwIJbEZhxQ'; 
-        const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`;
-        
-        const chatbotButton = document.getElementById('chatbot-button');
-        const chatbotContainer = document.getElementById('chatbot-container');
-        const closeChatbot = document.getElementById('close-chatbot');
-        const chatInput = document.getElementById('chat-input');
-        const sendChat = document.getElementById('send-chat');
-        const chatMessages = document.getElementById('chat-messages');
-        const chatbotLink = document.getElementById('chatbot-link');
-
-        if (chatbotButton) {
-            chatbotButton.addEventListener('click', () => {
-                chatbotContainer.classList.toggle('chatbot-hidden');
-            });
+        if (data.candidates && data.candidates[0] && data.candidates[0].content) {
+            return data.candidates[0].content.parts[0].text;
+        } else {
+            return 'Maaf, saya tidak dapat menghasilkan respons. Mungkin terjadi kesalahan internal.';
         }
-        
-        if (closeChatbot) {
-            closeChatbot.addEventListener('click', () => {
-                chatbotContainer.classList.add('chatbot-hidden');
-            });
-        }
+    }
 
-        if (chatbotLink) {
-            chatbotLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                chatbotContainer.classList.remove('chatbot-hidden');
-            });
-        }
-
-        if (sendChat) {
-            sendChat.addEventListener('click', sendMessage);
-            chatInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') sendMessage();
-            });
-        }
-
-        async function sendMessage() {
-            const userMessage = chatInput.value.trim();
-            if (userMessage === '') return;
-            
-            addMessage(userMessage, 'user');
-            chatInput.value = '';
-            
-            // Tampilkan pesan "sedang mengetik"
-            const typingMessageElement = addMessage('...', 'bot-typing');
-            
-            try {
-                const geminiResponse = await getGeminiResponse(userMessage);
-                updateMessage(typingMessageElement, geminiResponse, 'bot');
-            } catch (error) {
-                console.error('Gemini API Error:', error);
-                updateMessage(typingMessageElement, 'Maaf, terjadi kesalahan saat menghubungi asisten AI. Silakan coba lagi.', 'bot-error');
-            }
-        }
-        
-        function addMessage(text, sender) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `flex mb-4 ${sender === 'user' ? 'justify-end' : ''}`;
-            
-            const bubbleDiv = document.createElement('div');
-            bubbleDiv.className = sender === 'user' 
-                ? 'bg-blue-500 text-white p-3 rounded-lg max-w-xs'
-                : 'bg-blue-100 p-3 rounded-lg max-w-xs';
-            bubbleDiv.innerHTML = `<p class="text-sm">${text}</p>`;
-            
-            messageDiv.appendChild(bubbleDiv);
-            chatMessages.appendChild(messageDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-            return bubbleDiv;
-        }
-
-        function updateMessage(element, newText, newSenderClass) {
-            element.innerHTML = `<p class="text-sm">${newText}</p>`;
-            element.className = newSenderClass === 'user' 
-                ? 'bg-blue-500 text-white p-3 rounded-lg max-w-xs'
-                : 'bg-blue-100 p-3 rounded-lg max-w-xs';
-        }
-        
-        async function getGeminiResponse(prompt) {
-            const payload = {
-                contents: [{
-                    parts: [{
-                        text: prompt
-                    }]
-                }]
-            };
-
-            const response = await fetch(GEMINI_API_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(payload)
-            });
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-            const data = await response.json();
-            
-            if (data.candidates && data.candidates[0] && data.candidates[0].content) {
-                return data.candidates[0].content.parts[0].text;
+    // === FUNGSI MARKETPLACE DINAMIS ===
+    fetch('assets/produk.json') // Perbaikan di sini
+      .then(res => {
+        if (!res.ok) {
+            if (res.status === 404) {
+                console.error('Gagal memuat produk: File produk.json tidak ditemukan. Mohon periksa lokasinya.');
             } else {
-                return 'Maaf, saya tidak dapat menghasilkan respons. Mungkin terjadi kesalahan internal.';
+                console.error('Gagal memuat produk: Terjadi kesalahan jaringan atau server.');
             }
+            throw new Error('Gagal memuat produk');
         }
-
-        // === FUNGSI MARKETPLACE DINAMIS ===
-        fetch('produk.json')
-          .then(res => res.json())
-          .then(data => {
-            const productGrid = document.querySelector('#products .grid');
-            if (productGrid) {
-              productGrid.innerHTML = '';
-              data.slice(0, 4).forEach(product => { // Menampilkan 4 produk pertama di halaman utama
-                const card = document.createElement('div');
-                card.className = 'product-card bg-white rounded-xl overflow-hidden shadow-md transition duration-300';
-                card.innerHTML = `
-                  <div class="relative">
-                    <img src="${product.gambar}" alt="${product.nama}" class="w-full h-48 object-cover">
-                    ${product.tag ? `<div class="absolute top-2 right-2 bg-blue-500 text-white text-xs px-2 py-1 rounded-full">
-                      <i class="fas fa-bolt mr-1"></i> ${product.tag}
-                    </div>` : ''}
-                  </div>
-                  <div class="p-4">
-                    <h3 class="font-bold text-lg mb-1">${product.nama}</h3>
-                    <p class="text-gray-600 text-sm mb-3">${product.deskripsi}</p>
-                    <div class="flex justify-between items-center">
-                      <span class="font-bold text-blue-600">Rp ${product.harga.toLocaleString('id-ID')}/${product.satuan}</span>
-                      <button class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-full text-sm transition">
-                        <i class="fas fa-cart-plus mr-1"></i> Pesan
-                      </button>
-                    </div>
-                  </div>
-                `;
-                productGrid.appendChild(card);
-              });
-            }
-          })
-          .catch(err => {
-            console.error('Gagal memuat produk:', err);
+        return res.json();
+      })
+      .then(data => {
+        const productGrid = document.querySelector('#products .grid');
+        if (productGrid) {
+          productGrid.innerHTML = '';
+          data.slice(0, 4).forEach(product => { // Menampilkan 4 produk pertama di halaman utama
+            const card = document.createElement('div');
+            card.className = 'product-card bg-white rounded-xl overflow-hidden shadow-md transition duration-300';
+            card.innerHTML = `
+              <div class="relative">
+                <img src="${product.gambar}" alt="${product.nama}" class="w-full h-48 object-cover">
+                ${product.tag ? `<div class="absolute top-2 right-2 bg-blue-500 text-white text-xs px-2 py-1 rounded-full">
+                  <i class="fas fa-bolt mr-1"></i> ${product.tag}
+                </div>` : ''}
+              </div>
+              <div class="p-4">
+                <h3 class="font-bold text-lg mb-1">${product.nama}</h3>
+                <p class="text-gray-600 text-sm mb-3">${product.deskripsi}</p>
+                <div class="flex justify-between items-center">
+                  <span class="font-bold text-blue-600">Rp ${product.harga.toLocaleString('id-ID')}/${product.satuan}</span>
+                  <button class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-full text-sm transition">
+                    <i class="fas fa-cart-plus mr-1"></i> Pesan
+                  </button>
+                </div>
+              </div>
+            `;
+            productGrid.appendChild(card);
           });
-
-        // === FUNGSI FORMULIR PESAN CEPAT VIA WHATSAPP ===
-        const quickOrderForm = document.querySelector('#quick-order-form');
-        if (quickOrderForm) {
-            quickOrderForm.addEventListener('submit', function(event) {
-                event.preventDefault(); 
-                const name = document.getElementById('name').value;
-                const phone = document.getElementById('phone').value;
-                const product = document.getElementById('product').value;
-                const note = document.getElementById('note').value;
-                const whatsappNumber = '6281234567890'; // Ganti dengan nomor WhatsApp Anda
-                const message = encodeURIComponent(
-                    `Halo AneukLaot, saya ingin memesan produk:\n\n` +
-                    `*Nama*: ${name}\n` +
-                    `*Nomor WA*: ${phone}\n` +
-                    `*Produk*: ${product}\n` +
-                    `*Catatan*: ${note || '-'}\n\n` +
-                    `Mohon konfirmasi pesanan saya. Terima kasih!`
-                );
-                const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
-                window.open(whatsappUrl, '_blank');
-            });
         }
-    </script>
+      })
+      .catch(err => {
+        console.error('Terjadi kesalahan saat memproses data produk:', err);
+      });
+
+    // === FUNGSI FORMULIR PESAN CEPAT VIA WHATSAPP ===
+    const quickOrderForm = document.querySelector('#quick-order-form');
+    if (quickOrderForm) {
+        quickOrderForm.addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const product = document.getElementById('product').value;
+            const note = document.getElementById('note').value;
+            const whatsappNumber = '6281234567890'; // Ganti dengan nomor WhatsApp Anda
+            const message = encodeURIComponent(
+                `Halo AneukLaot, saya ingin memesan produk:\n\n` +
+                `*Nama*: ${name}\n` +
+                `*Nomor WA*: ${phone}\n` +
+                `*Produk*: ${product}\n` +
+                `*Catatan*: ${note || '-'}\n\n` +
+                `Mohon konfirmasi pesanan saya. Terima kasih!`
+            );
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
+            window.open(whatsappUrl, '_blank');
+        });
+    }
+</script>
 
 </body>
 </html>
